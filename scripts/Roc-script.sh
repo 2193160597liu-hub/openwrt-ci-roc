@@ -72,6 +72,34 @@ mv -f package/frp feeds/packages/net/frp
 git_sparse_clone frp-toml https://github.com/laipeng668/luci applications/luci-app-frpc applications/luci-app-frps
 mv -f package/luci-app-frpc feeds/luci/applications/luci-app-frpc
 mv -f package/luci-app-frps feeds/luci/applications/luci-app-frps
+
+# SmartDNS 本地DNS加速
+git_sparse_clone main https://github.com/immortalwrt/packages net/smartdns
+mv -f package/smartdns feeds/packages/net/smartdns
+git_sparse_clone main https://github.com/immortalwrt/luci applications/luci-app-smartdns
+mv -f package/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
+
+# AdGuardHome 广告拦截DNS
+git_sparse_clone main https://github.com/immortalwrt/packages net/adguardhome
+mv -f package/adguardhome feeds/packages/net/adguardhome
+git_sparse_clone main https://github.com/immortalwrt/luci applications/luci-app-adguardhome
+mv -f package/luci-app-adguardhome feeds/luci/applications/luci-app-adguardhome
+
+# DDNsto 内网穿透（独立官方仓库，不存于ImmortalWrt）
+# 拉取LuCI网页面板
+git clone --depth=1 https://github.com/linkease/ddnsto-openwrt-luci package/luci-app-ddnsto
+mv -f package/luci-app-ddnsto feeds/luci/applications/luci-app-ddnsto
+# 拉取ddnsto程序编译包
+git clone --depth=1 https://github.com/linkease/ddnsto-openwrt package/ddnsto
+mv -f package/ddnsto feeds/packages/net/ddnsto
+
+# OAF OpenAppFilter 应用过滤/家长控制
+git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
+# 移动内核模块、服务程序、LuCI面板
+mv -f package/OpenAppFilter/oaf feeds/packages/net/
+mv -f package/OpenAppFilter/open-app-filter feeds/packages/net/
+mv -f package/OpenAppFilter/luci-app-oaf feeds/luci/applications/luci-app-oaf
+
 git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon feeds/luci/themes/luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config feeds/luci/applications/luci-app-argon-config
 git clone --depth=1 https://github.com/eamonxg/luci-theme-aurora feeds/luci/themes/luci-theme-aurora
